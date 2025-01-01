@@ -7,10 +7,7 @@
     <title>Vite + TS</title>
   </head>
   <body class="p-8">
-    <div
-      x-data="fastFeedback"
-      x-intersect="$ajax('/feedbacks?page=2', { target: 'content pagination' })"
-    >
+    <div x-data="fastFeedback">
       <div
         id="content"
         x-merge="append"
@@ -261,14 +258,6 @@
             </template>
           </div>
         </template>
-      </div>
-      <div id="pagination">
-        <div>Page 1 of 5</div>
-        <div>
-          <!-- Page 2 and up would have a "Previous" link like this -->
-          <!-- <a href="/contacts?page=1"><span aria-hidden="true">← </span> Previous</a> -->
-          <a href="/feedbacks?page=2">Next<span aria-hidden="true"> →</span></a>
-        </div>
       </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
