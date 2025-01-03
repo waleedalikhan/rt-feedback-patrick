@@ -37,7 +37,7 @@ export const requestFeedback: () => IRequestFeedback = () => ({
     );
     this.directReports = updatedReports;
   },
-  feedbackFrom: "external",
+  feedbackFrom: "colleague",
   showColleagues: false,
   colleaguesData: colleagues,
   selectedColleagues: [],
