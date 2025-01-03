@@ -14,6 +14,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         home: "./index.html",
+        "request-feedback": "./request-feedback.html",
       },
     },
   },
