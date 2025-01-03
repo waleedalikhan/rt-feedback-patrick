@@ -10,10 +10,12 @@
   },
   "devDependencies": {
     "@alpinejs/intersect": "^3.14.8",
+    "@imacrayon/alpine-ajax": "^0.11.0",
     "@types/alpinejs": "^3.13.11",
     "@types/alpinejs__intersect": "^3.13.4",
     "alpinejs": "^3.14.8",
     "autoprefixer": "^10.4.20",
+    "moment": "^2.30.1",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
     "typescript": "~5.6.2",

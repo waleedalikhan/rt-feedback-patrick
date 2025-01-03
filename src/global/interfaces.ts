@@ -1,14 +1,17 @@
 export interface IFeedback {
-  id?: string | number;
-  user?: {
-    img?: string;
-    name?: string;
-    commentTime?: string;
-    recognition?: string;
-    userReplies?: { img?: string; name?: string }[];
-  };
-  feedback?: string;
-  replies?: { img?: string; name?: string; time?: string; reply?: string }[];
+  authorName?: string;
+  authorAvatarURL?: string;
+  recipientName?: string;
+  recipientAvatarURL?: string;
+  feedbackComment?: string;
+  datetime?: string;
+  feedbackType?: string;
+  textReplies?: {
+    replyComment?: string;
+    replyAuthorName?: string;
+    replyAuthorAvatarURL?: string;
+    time?: string;
+  }[];
   reactions?: string[];
   emoji?: string | null;
 }

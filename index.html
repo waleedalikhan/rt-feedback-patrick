@@ -4,64 +4,140 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>RT Feedback</title>
   </head>
   <body class="p-8">
-    <div x-data="fastFeedback">
+    <section class="container mx-auto space-y-10">
       <div
-        id="content"
-        x-merge="append"
-        class="p-5 bg-gray-200 max-w-screen-md flex flex-wrap gap-8"
+        class="flex lg:flex-nowrap flex-wrap items-center gap-10 pb-6 border-b"
       >
-        <template x-for="feedback in content" :key="feedback.id">
-          <div
-            x-data="innerFeedback(feedback)"
-            class="bg-white border rounded-xl w-full p-6 flex flex-wrap gap-5 items-start"
+        <div class="lg:w-2/3 w-full space-y-2">
+          <h1 class="text-2xl font-semibold flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"
+              />
+            </svg>
+            Fast Feedback
+          </h1>
+          <p class="text-gray-500">
+            Explore key engagement metrics to understand user activity and
+            trends across the platform. This dashboard provides insights into
+            total and active users, return user rates, and login success. Track
+            app interactions with the Activity Heatmap, Realtime Active Users,
+            and Popular Pages. The Activity Summary offers, a comprehensive view
+            of user engagement across departments, roles, and locations,
+            focusing on reviews, feedback and objectives.
+          </p>
+        </div>
+        <div class="flex sm:flex-nowrap flex-wrap items-center gap-4">
+          <a
+            href="#"
+            class="bg-blue-600 text-white text-lg font-semibold flex items-center gap-3 rounded-lg px-4 py-2 truncate"
           >
-            <div class="w-full flex gap-2">
-              <div
-                class="w-12 relative after:content-[''] after:w-2 after:bottom-0 after:top-16 after:h-full after:bg-gray-200 after:absolute after:left-1/2 after:-translate-x-1/2 overflow-hidden"
-                :class="data.replies.length > 0 ? 'after:block' : 'after:hidden'"
-              >
-                <div class="w-12 h-12">
-                  <img src="/user-img.webp" alt="" class="rounded" />
-                </div>
-              </div>
-              <div class="flex-1 flex flex-wrap gap-2">
-                <div class="w-full flex items-start gap-2">
-                  <div>
-                    <p class="text-gray-500 text-sm">
-                      <span
-                        class="text-lg text-black font-semibold"
-                        x-text="data.user.name"
-                      ></span>
-                      <span x-text="data.user.commentTime"></span>
-                    </p>
-                    <div class="flex gap-2 text-gray-500">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="size-6"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"
-                        />
-                      </svg>
-                      <p
-                        class="text-black text-lg"
-                        x-text="data.user.recognition"
-                      ></p>
-                    </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
+            Give Feedback
+          </a>
+          <a
+            href="/request-feedback.html"
+            class="bg-blue-600 text-white text-lg font-semibold flex items-center gap-3 rounded-lg px-4 py-2 truncate"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
+            Request Feedback
+          </a>
+        </div>
+      </div>
+      <div x-data="fastFeedback">
+        <div
+          id="content"
+          x-merge="append"
+          class="p-5 bg-gray-200 max-w-screen-lg flex flex-wrap gap-8"
+        >
+          <template x-for="(feedback, index) in content" :key="index">
+            <!-- Starting point of component -->
+            <div
+              x-data="innerFeedback(feedback)"
+              class="bg-white border rounded-xl w-full sm:p-6 p-4 flex flex-wrap gap-5 items-start"
+            >
+              <div class="w-full flex md:flex-nowrap flex-wrap gap-2">
+                <div
+                  class="w-12 relative after:content-[''] after:w-2 after:bottom-0 after:top-16 after:h-full after:bg-gray-200 after:absolute after:left-1/2 after:-translate-x-1/2 overflow-hidden"
+                  :class="data.textReplies.length > 0 ? 'md:after:block after:hidden' : 'after:hidden'"
+                >
+                  <div class="w-12 h-12">
+                    <img :src="data.authorAvatarURL" alt="" class="rounded" />
                   </div>
-                  <template
-                    x-for="(item, index) in data.user.userReplies"
-                    :key="index"
+                </div>
+                <div
+                  class="md:flex-1 flex-auto md:w-auto w-full flex flex-wrap md:gap-2 gap-4"
+                >
+                  <div
+                    class="w-full flex md:flex-nowrap flex-wrap items-start gap-2"
                   >
+                    <div class="md:w-auto w-full">
+                      <p class="text-gray-500 text-sm">
+                        <span
+                          class="text-lg text-black font-semibold"
+                          x-text="data.authorName"
+                        ></span>
+                        <span x-text="getCommentTime()"></span>
+                      </p>
+                      <div class="flex gap-2 text-gray-500">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          class="size-6"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"
+                          />
+                        </svg>
+                        <p
+                          class="text-black text-lg"
+                          x-text="data.feedbackType"
+                        ></p>
+                      </div>
+                    </div>
                     <div class="flex items-center gap-2">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -79,187 +155,247 @@
                       </svg>
                       <div class="flex items-center gap-2">
                         <div class="w-8 h-8">
-                          <img :src="item.img" alt="" class="rounded" />
+                          <img
+                            :src="data.recipientAvatarURL"
+                            alt=""
+                            class="rounded"
+                          />
                         </div>
                         <span
                           class="text-lg text-black font-semibold"
-                          x-text="item.name"
+                          x-text="data.recipientName"
                         ></span>
                       </div>
                     </div>
-                  </template>
-                </div>
-                <div class="w-full rounded-lg p-5 bg-gray-400">
-                  <p class="font-semibold text-white text-lg">Your feedback</p>
-                  <p
-                    class="text-white line-clamp-3"
-                    x-ref="fbContent"
-                    x-text="data.feedback"
-                    x-effect="toggleTextClamp($refs.fbContent)"
-                  ></p>
-                  <template x-if="isTextClamped">
-                    <button
-                      type="button"
-                      class="outline-none focus:oultine-none bg-transparent flex gap-2 text-white mt-5"
-                      @click="toggleReadMore($refs.fbContent)"
-                    >
-                      read more
-                      <div class="p-1 border border-white rounded-full">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke-width="2"
-                          stroke="currentColor"
-                          :class="`w-4 h-4 transform ${isTextShown ? 'rotate-180' : 'rotate-0'}`"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                          />
-                        </svg>
-                      </div>
-                    </button>
-                  </template>
-                </div>
-                <div class="w-full flex items-center gap-4">
-                  <div class="bg-black p-2">
-                    <div
-                      class="bg-white rounded-full flex items-center gap-2 text-lg px-3 outline-none focus:outline-none"
-                    >
-                      <div
-                        x-data="emojiData"
-                        @keydown.escape.prevent.stop="close($refs.button)"
-                        @focusin.window="! $refs.panel.contains($event.target) && close()"
-                        x-id="['dropdown-button']"
-                        class="relative"
+                  </div>
+                  <div class="w-full rounded-lg p-5 bg-gray-400">
+                    <p class="font-semibold text-white text-lg">
+                      Your feedback
+                    </p>
+                    <p
+                      class="text-white line-clamp-3"
+                      x-ref="fbContent"
+                      x-text="data.feedbackComment"
+                      x-effect="toggleTextClamp($refs.fbContent)"
+                    ></p>
+                    <template x-if="isTextClamped">
+                      <button
+                        type="button"
+                        class="outline-none focus:oultine-none bg-transparent flex gap-2 text-white mt-5"
+                        @click="toggleReadMore($refs.fbContent)"
                       >
-                        <button
-                          x-ref="button"
-                          @click="toggle()"
-                          :aria-expanded="open"
-                          :aria-controls="$id('dropdown-button')"
-                          type="button"
-                          class="bg-white flex outline-none focus:outline-none bg-transparent"
-                        >
-                          <template
-                            x-for="(reaction, index) in data.reactions"
-                            :key="index"
+                        read more
+                        <div class="p-1 border border-white rounded-full">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            :class="`w-4 h-4 transform ${isTextShown ? 'rotate-180' : 'rotate-0'}`"
                           >
-                            <template x-if="index <= 2">
-                              <span x-text="reaction"></span>
-                            </template>
-                          </template>
-                        </button>
-
-                        <input
-                          type="hidden"
-                          id="emoji"
-                          x-model="input"
-                          value=""
-                        />
-                        <div
-                          x-ref="panel"
-                          x-show="open"
-                          x-transition.origin.top.left
-                          @click.outside="close($refs.button)"
-                          :id="$id('dropdown-button')"
-                          style="display: none; width: 24.85rem"
-                          class="absolute left-0 mt-2 p-4 max-h-64 bg-white shadow-md overflow-scroll rounded"
-                        >
-                          <input
-                            type="search"
-                            x-model="search"
-                            class="h-10 w-full px-2 mb-2 text-sm border border-1 border-slate-200 bg-gray-50 rounded-md placeholder:text-gray-500"
-                            placeholder="Search an emoji..."
-                          />
-                          <template
-                            x-for="(emoji, keywords) in filteredEmojis"
-                            :key="emoji"
-                          >
-                            <button
-                              class="inline-block py-2 px-3 m-1 cursor-pointer rounded-md bg-gray-100 hover:bg-blue-100"
-                              :title="keywords"
-                              @click="input = emoji; toggle(); data.reactions.push(input)"
-                            >
-                              <span
-                                class="inline-block w-5 h-5"
-                                x-text="emoji"
-                              ></span>
-                            </button>
-                          </template>
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                            />
+                          </svg>
                         </div>
+                      </button>
+                    </template>
+                  </div>
+                  <div class="w-full flex items-center gap-4">
+                    <div class="bg-black p-2">
+                      <div
+                        class="bg-white rounded-full flex items-center gap-2 text-lg px-3 outline-none focus:outline-none"
+                      >
+                        <div
+                          x-data="emojiData"
+                          @keydown.escape.prevent.stop="close($refs.button)"
+                          @focusin.window="! $refs.panel.contains($event.target) && close()"
+                          x-id="['dropdown-button']"
+                          class="relative"
+                        >
+                          <button
+                            x-ref="button"
+                            @click="toggle()"
+                            :aria-expanded="open"
+                            :aria-controls="$id('dropdown-button')"
+                            type="button"
+                            class="bg-white flex outline-none focus:outline-none bg-transparent"
+                          >
+                            <template
+                              x-for="(reaction, index) in data.reactions"
+                              :key="index"
+                            >
+                              <template x-if="index <= 2">
+                                <span x-text="reaction"></span>
+                              </template>
+                            </template>
+                          </button>
+
+                          <input
+                            type="hidden"
+                            id="emoji"
+                            x-model="input"
+                            value=""
+                          />
+                          <div
+                            x-ref="panel"
+                            x-show="open"
+                            x-transition.origin.top.left
+                            @click.outside="close($refs.button)"
+                            :id="$id('dropdown-button')"
+                            style="display: none"
+                            class="absolute left-0 mt-2 p-4 max-h-64 bg-white shadow-md overflow-scroll rounded md:w-[24.85rem] w-[17rem]"
+                          >
+                            <input
+                              type="search"
+                              x-model="search"
+                              class="h-10 w-full px-2 mb-2 text-sm border border-1 border-slate-200 bg-gray-50 rounded-md placeholder:text-gray-500"
+                              placeholder="Search an emoji..."
+                            />
+                            <template
+                              x-for="(emoji, keywords) in filteredEmojis"
+                              :key="emoji"
+                            >
+                              <button
+                                class="inline-block py-2 px-3 m-1 cursor-pointer rounded-md bg-gray-100 hover:bg-blue-100"
+                                :title="keywords"
+                                @click="input = emoji; toggle(); data.reactions.push(input)"
+                              >
+                                <span
+                                  class="inline-block w-5 h-5"
+                                  x-text="emoji"
+                                ></span>
+                              </button>
+                            </template>
+                          </div>
+                        </div>
+                        <span
+                          class="text-black"
+                          x-text="data.reactions.length"
+                        ></span>
                       </div>
-                      <span
-                        class="text-black"
-                        x-text="data.reactions.length"
-                      ></span>
+                    </div>
+                    <div>
+                      <button
+                        type="button"
+                        class="outline-none focus:outline-none bg-transparent text-2xl text-black"
+                        @click="showCommentBlock = true"
+                      >
+                        Add reply
+                      </button>
                     </div>
                   </div>
-                  <div>
+                </div>
+              </div>
+              <template x-if="showCommentBlock">
+                <div
+                  class="w-full flex md:flex-nowrap flex-wrap gap-2 items-start"
+                >
+                  <div class="w-12 h-12 grid place-content-center">
+                    <div class="md:w-6 md:h-6 w-full h-full">
+                      <img
+                        src="/user-img.webp"
+                        alt=""
+                        class="rounded object-cover"
+                      />
+                    </div>
+                  </div>
+                  <div class="md:flex-1 flex-auto md:w-auto w-full space-y-4">
+                    <textarea
+                      rows="1"
+                      cols="1"
+                      type="text"
+                      placeholder="Add a comment"
+                      class="outline-none focus:outline-none ring-0 ring-offset-0 focus:ring-0 focus:ring-offset-0 border focus:border-black rounded h-10 px-4 pt-2 w-full grid place-content-center"
+                      x-model="reply"
+                    ></textarea>
                     <button
                       type="button"
-                      class="outline-none focus:outline-none bg-transparent text-2xl text-black"
-                      @click="showCommentBlock = true"
+                      class="px-4 py-2 rounded-full text-white outline-none focus:outline-none bg-green-500 min-w-20 flex justify-center"
+                      @click="addReply()"
                     >
-                      Add reply
+                      <template x-if="isReplyLoading">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 100 100"
+                          preserveAspectRatio="xMidYMid"
+                          width="24"
+                          height="24"
+                          class="animate-spin"
+                        >
+                          <g data-idx="1">
+                            <circle
+                              stroke-dasharray="164.93361431346415 56.97787143782138"
+                              r="35"
+                              stroke-width="10"
+                              stroke="#ffffff"
+                              fill="none"
+                              cy="50"
+                              cx="50"
+                              data-idx="2"
+                              transform="matrix(-0.9510506730946859,-0.3090349773183365,0.3090349773183365,-0.9510506730946859,82.10078478881746,113.00428252065112)"
+                            ></circle>
+                            <g data-idx="4"></g>
+                          </g>
+                        </svg>
+                      </template>
+                      <template x-if="!isReplyLoading">
+                        <span>Submit</span>
+                      </template>
                     </button>
                   </div>
                 </div>
-              </div>
+              </template>
+              <template x-for="(reply, index) in data.textReplies" :key="index">
+                <div
+                  class="w-full flex md:flex-nowrap flex-wrap gap-2 items-start"
+                >
+                  <div class="w-12 h-12 flex justify-center">
+                    <div class="md:w-6 md:h-6 w-full h-full">
+                      <img
+                        :src="reply.replyAuthorAvatarURL"
+                        alt=""
+                        class="rounded object-cover"
+                      />
+                    </div>
+                  </div>
+                  <div class="md:flex-1 flex-auto md:w-auto w-full space-y-2">
+                    <p class="text-gray-500 flex gap-2 items-center">
+                      <span
+                        class="text-black text-lg font-semibold"
+                        x-text="reply.replyAuthorName"
+                      ></span>
+                      <span x-text="reply.time"></span>
+                    </p>
+                    <div class="w-full p-5 rounded-lg bg-gray-100">
+                      <p class="text-black" x-text="reply.replyComment"></p>
+                    </div>
+                  </div>
+                </div>
+              </template>
             </div>
-            <template x-if="showCommentBlock">
-              <div class="w-full flex gap-2 items-start">
-                <div class="w-12 h-12 grid place-content-center">
-                  <div class="w-6 h-6">
-                    <img src="/user-img.webp" alt="" class="rounded" />
-                  </div>
-                </div>
-                <div class="flex-1 space-y-4">
-                  <textarea
-                    rows="1"
-                    cols="1"
-                    type="text"
-                    placeholder="Add a comment"
-                    class="outline-none focus:outline-none ring-0 ring-offset-0 focus:ring-0 focus:ring-offset-0 border focus:border-black rounded h-10 px-4 pt-2 w-full grid place-content-center"
-                    x-model="data.reply"
-                  ></textarea>
-                  <button
-                    type="button"
-                    class="px-4 py-2 rounded-full text-white outline-none focus:outline-none bg-green-500"
-                    @click="data.replies.push({img: '/user-img.webp', name: 'Patrick Fitzgerald', time: 'just now', reply: data.reply}); showCommentBlock = false; data.reply = ''"
-                  >
-                    Submit
-                  </button>
-                </div>
-              </div>
-            </template>
-            <template x-for="(reply, index) in data.replies" :key="index">
-              <div class="w-full flex gap-2 items-start">
-                <div class="w-12 h-12 flex justify-center">
-                  <div class="w-6 h-6">
-                    <img :src="reply.img" alt="" class="rounded" />
-                  </div>
-                </div>
-                <div class="flex-1 space-y-2">
-                  <p class="text-gray-500 flex gap-2 items-center">
-                    <span
-                      class="text-black text-lg font-semibold"
-                      x-text="reply.name"
-                    ></span>
-                    <span x-text="reply.time"></span>
-                  </p>
-                  <div class="w-full p-5 rounded-lg bg-gray-100">
-                    <p class="text-black" x-text="reply.reply"></p>
-                  </div>
-                </div>
-              </div>
-            </template>
+            <!-- Ending point of component -->
+          </template>
+        </div>
+        <div
+          id="pagination"
+          x-init
+          x-intersect="$ajax('/contacts?page=2', { target: 'content pagination' })"
+        >
+          <div>Page 1 of 5</div>
+          <div>
+            <!-- Page 2 and up would have a "Previous" link like this -->
+            <!-- <a href="/contacts?page=1"><span aria-hidden="true">← </span> Previous</a> -->
+            <a href="/feedback?page=2"
+              >Next<span aria-hidden="true"> →</span></a
+            >
           </div>
-        </template>
+        </div>
       </div>
-    </div>
+    </section>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
