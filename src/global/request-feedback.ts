@@ -72,7 +72,6 @@ export const requestFeedback: () => IRequestFeedback = () => ({
     value: string
   ) {
     this.externalFeedbackDetails![i][valToChange] = value;
-    console.log(this.externalFeedbackDetails);
   },
   addExternalFeedback() {
     this.externalFeedbackDetails?.push({ name: "", email: "" });
@@ -80,4 +79,9 @@ export const requestFeedback: () => IRequestFeedback = () => ({
   removeExternalFeedback(i: number) {
     this.externalFeedbackDetails?.splice(i, 1);
   },
+  feedbackRequestType: "quick-recognition",
+  feedbackRequestReason: "",
+  objectivesProgress: "",
+  strengthsReflection: "",
+  career: "",
 });

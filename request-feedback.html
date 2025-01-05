@@ -88,6 +88,7 @@
                 name="feedback-for"
                 type="radio"
                 x-model="feedbackFor"
+                class="text-blue-500 w-5 h-5"
               />
               <label for="direct-reports" class="text-neutral-600"
                 >One of my direct reports</label
@@ -203,6 +204,7 @@
                 name="feedback-from"
                 type="radio"
                 x-model="feedbackFrom"
+                class="text-blue-500 w-5 h-5"
               />
               <label for="external" class="text-neutral-600"
                 >External (e.g. clients)</label
@@ -376,6 +378,240 @@
           </template>
         </div>
       </div>
+      <div class="flex w-full items-start gap-4">
+        <div
+          class="h-full relative after:content-[''] after:w-1.5 after:bottom-0 after:top-16 after:h-full after:bg-gray-300 after:absolute after:left-1/2 after:-translate-x-1/2 overflow-hidden"
+        >
+          <div
+            class="w-12 h-12 bg-gray-200 rounded-lg grid place-content-center text-neutral-500 shadow-inner"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
+              />
+            </svg>
+          </div>
+        </div>
+        <div class="flex-1">
+          <p class="text-lg font-semibold text-neutral-900 mb-6">
+            What kind of feedback would you like to request?
+          </p>
+          <div class="flex items-start gap-4 mb-4">
+            <input
+              type="radio"
+              id="quick-recognition"
+              value="quick-recognition"
+              name="feedback-request-type"
+              x-model="feedbackRequestType"
+              class="text-blue-500 w-5 h-5"
+            />
+            <label
+              for="quick-recognition"
+              class="flex items-center gap-4 cursor-pointer"
+            >
+              <div
+                class="w-12 h-12 rounded shadow-inner bg-purple-400/80 text-white grid place-content-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p class="text-lg font-semibold text-neutral-900">
+                  Quick recognition
+                </p>
+                <p class="text-neutral-500 text-sm">
+                  Give real-time feedback to a colleague in the moment
+                </p>
+              </div>
+            </label>
+          </div>
+          <div class="flex items-start gap-4 mb-4">
+            <input
+              type="radio"
+              id="contribution-to-culture"
+              value="contribution-to-culture"
+              name="feedback-request-type"
+              x-model="feedbackRequestType"
+              class="text-blue-500 w-5 h-5"
+            />
+            <label
+              for="contribution-to-culture"
+              class="flex items-center gap-4 cursor-pointer"
+            >
+              <div
+                class="w-12 h-12 rounded shadow-inner bg-green-600/50 text-white grid place-content-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p class="text-lg font-semibold text-neutral-900">
+                  Contribution to culture
+                </p>
+                <p class="text-neutral-500 text-sm">
+                  Recognize a colleague who is actively building the firm's
+                  culture and developing colleagues
+                </p>
+              </div>
+            </label>
+          </div>
+          <div class="flex items-start gap-4 mb-4">
+            <input
+              type="radio"
+              id="manager-check-in"
+              value="manager-check-in"
+              name="feedback-request-type"
+              x-model="feedbackRequestType"
+              class="text-blue-500 w-5 h-5"
+            />
+            <label
+              for="manager-check-in"
+              class="flex items-center gap-4 cursor-pointer"
+            >
+              <div
+                class="w-12 h-12 rounded shadow-inner bg-gray-200 text-neutral-500 grid place-content-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4.5v15m7.5-7.5h-15"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p class="text-lg font-semibold text-neutral-900">
+                  Manager check-in
+                </p>
+                <p class="text-neutral-500 text-sm">
+                  Request a check-in on progress with your line manager
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+      <template
+        x-if="feedbackRequestType === 'quick-recognition' || feedbackRequestType === 'contribution-to-culture'"
+      >
+        <div class="w-full flex flex-wrap">
+          <h2
+            class="w-full text-2xl font-semibold text-neutral-900 flex items-start gap-1"
+          >
+            Feedback request <span class="text-red-600">*</span>
+          </h2>
+          <p class="w-full text-lg text-neutral-900 mb-4">
+            Reason for request?
+          </p>
+          <textarea
+            name=""
+            id=""
+            rows="5"
+            class="w-full border border-neutral-300"
+            placeholder="Enter your comments"
+            x-model="feedbackRequestReason"
+          ></textarea>
+        </div>
+      </template>
+      <template x-if="feedbackRequestType === 'manager-check-in'">
+        <div class="flex flex-wrap gap-10">
+          <div class="w-full flex flex-wrap">
+            <h2
+              class="w-full text-2xl font-semibold text-neutral-900 flex items-start gap-1"
+            >
+              Objectives progress <span class="text-red-600">*</span>
+            </h2>
+            <p class="w-full text-lg text-neutral-900 mb-4">
+              Please comment on progress against set objectives year to date
+            </p>
+            <textarea
+              name=""
+              id=""
+              rows="5"
+              class="w-full border border-neutral-300"
+              placeholder="Enter your comments"
+              x-model="objectivesProgress"
+            ></textarea>
+          </div>
+          <div class="w-full flex flex-wrap">
+            <h2
+              class="w-full text-2xl font-semibold text-neutral-900 flex items-start gap-1"
+            >
+              Strengths reflection <span class="text-red-600">*</span>
+            </h2>
+            <p class="w-full text-lg text-neutral-900 mb-4">
+              Please comment on strengths demonstrated year to date
+            </p>
+            <textarea
+              name=""
+              id=""
+              rows="5"
+              class="w-full border border-neutral-300"
+              placeholder="Enter your comments"
+              x-model="strengthsReflection"
+            ></textarea>
+          </div>
+          <div class="w-full flex flex-wrap">
+            <h2
+              class="w-full text-2xl font-semibold text-neutral-900 flex items-start gap-1"
+            >
+              Career <span class="text-red-600">*</span>
+            </h2>
+            <p class="w-full text-lg text-neutral-900 mb-4">
+              Please comment on progress against medium / long-term career &
+              development goals
+            </p>
+            <textarea
+              name=""
+              id=""
+              rows="5"
+              class="w-full border border-neutral-300"
+              placeholder="Enter your comments"
+              x-model="career"
+            ></textarea>
+          </div>
+        </div>
+      </template>
     </form>
 
     <script type="module" src="/src/main.ts"></script>
