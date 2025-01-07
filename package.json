@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "webpack serve",
-    "build": "webpack --env prod"
+    "dev": "node init && webpack serve",
+    "build": "node init && webpack --env prod"
   },
   "devDependencies": {
     "@alpinejs/intersect": "^3.14.8",
