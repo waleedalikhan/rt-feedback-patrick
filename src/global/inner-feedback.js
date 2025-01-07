@@ -1,28 +1,67 @@
 import moment from "moment";
-import { IFeedback } from "./interfaces";
 
-export const innerFeedback = (feedback: IFeedback | null) => ({
+export const innerFeedback = (feedback) => ({
   data: feedback,
   isTextClamped: false,
   isTextShown: false,
   showCommentBlock: false,
   reply: "",
   isReplyLoading: false,
-  toggleTextClamp(el: HTMLElement) {
+
+  // Initialize
+  init() {
+    // Add initial replies (demo data)
+    this.data.textReplies = [
+      ...this.data.textReplies,
+      {
+        replyComment: "Thank you, Alice! 1.",
+        replyAuthorName: "Bob Smith",
+        replyAuthorAvatarURL:
+          "https://www.gravatar.com/avatar/fd3cdcc2fdd20f9ebd9cd036c6f7b1b9",
+      },
+      {
+        replyComment: "Thank you, Alice! 2.",
+        replyAuthorName: "Bob Smith",
+        replyAuthorAvatarURL:
+          "https://www.gravatar.com/avatar/fd3cdcc2fdd20f9ebd9cd036c6f7b1b9",
+      },
+    ];
+
+    // Scoped listener for removing replies
+    this.$el.addEventListener("remove-reply", (e) => {
+      const index = e.detail;
+      const replies = this.data.textReplies;
+      setTimeout(() => {
+        replies.splice(index, 1);
+        this.data.textReplies = replies;
+        this.$el.dispatchEvent(
+          new CustomEvent("reply-removed", {
+            detail: null,
+          })
+        );
+      }, 2000);
+    });
+  },
+
+  // Toggle text clamp
+  toggleTextClamp(el) {
     el.scrollHeight > el.clientHeight
       ? (this.isTextClamped = true)
       : (this.isTextClamped = false);
   },
-  toggleReadMore(el?: HTMLElement) {
+
+  // Toggle read more
+  toggleReadMore(el) {
     this.isTextShown = !this.isTextShown;
     el?.classList.toggle("line-clamp-3");
   },
+
+  // Add reply
   addReply() {
     this.isReplyLoading = true;
     setTimeout(() => {
-      console.log(this.reply);
       this.data?.textReplies?.push({
-        replyAuthorAvatarURL: "/user-img.webp",
+        replyAuthorAvatarURL: "./user-img.webp",
         replyAuthorName: "Patrick Fitzgerald",
         time: "just now",
         replyComment: this.reply,
@@ -30,8 +69,9 @@ export const innerFeedback = (feedback: IFeedback | null) => ({
       this.showCommentBlock = false;
       this.reply = "";
       this.isReplyLoading = false;
-    }, 3000);
+    }, 1000);
   },
+  // Function to get actual time in human-readable format from timestamp
   getCommentTime() {
     const startTime = moment(this.data?.datetime);
     const elapsedTime = moment.duration(moment().diff(startTime));

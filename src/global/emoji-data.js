@@ -39,7 +39,7 @@ export const emojiData = () => ({
     "win, medal, gold, silver, bronze, rank, trophy, sport, competition, game, award":
       "🏅",
   },
-  close(focusAfter?: any) {
+  close(focusAfter) {
     if (!this.open) return;
 
     this.open = false;
@@ -58,7 +58,7 @@ export const emojiData = () => ({
   get filteredEmojis() {
     return Object.keys(this.emojis)
       .filter((key) => key.includes(this.search))
-      .reduce((obj: any, key: any) => {
+      .reduce((obj, key) => {
         // @ts-ignore
         obj[key] = this.emojis[key];
         return obj;

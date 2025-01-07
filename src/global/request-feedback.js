@@ -1,15 +1,4 @@
-interface IRequestFeedback {
-  feedbackFor: "myself" | "direct-reports";
-  feedbackFrom: "colleague" | "external";
-  directReports?: string[];
-  colleaguesData: string[];
-  selectedColleagues: string[];
-  showColleagues?: boolean;
-  externalFeedbackDetails?: { name?: string; email?: string }[];
-  ["key"]?: any;
-}
-
-const reports: string[] = [
+const reports = [
   "Select direct report",
   "Matt Kelsh",
   "Johnny Depp",
@@ -17,7 +6,7 @@ const reports: string[] = [
   "John Doe",
   "Patrick Fitzgerald",
 ];
-const colleagues: string[] = [
+const colleagues = [
   "Logan Bala",
   "David Card",
   "Ray D'Cruz",
@@ -25,13 +14,13 @@ const colleagues: string[] = [
   "Abby Deakin",
 ];
 
-export const requestFeedback: () => IRequestFeedback = () => ({
+export const requestFeedback = () => ({
   feedbackFor: "myself",
   showDirectReports: false,
   directReports: reports,
   selectedDirectReport: "Select direct report",
   searchReportVal: "",
-  onReportSearch(val: string) {
+  onReportSearch(val) {
     const updatedReports = reports.filter((report) =>
       report.toLowerCase().includes(val.toLowerCase())
     );
@@ -42,16 +31,16 @@ export const requestFeedback: () => IRequestFeedback = () => ({
   colleaguesData: colleagues,
   selectedColleagues: [],
   searchColleagueVal: "",
-  onColleagueSearch(val: string) {
+  onColleagueSearch(val) {
     const updatedColleagues = colleagues.filter((colleague) =>
       colleague.toLowerCase().includes(val.toLowerCase())
     );
     this.colleaguesData = updatedColleagues;
   },
-  removeColleague(i: number) {
+  removeColleague(i) {
     this.selectedColleagues.splice(i, 1);
   },
-  addColleague(colleague: string) {
+  addColleague(colleague) {
     if (this.selectedColleagues.includes(colleague)) {
       this.selectedColleagues.splice(
         this.selectedColleagues.indexOf(colleague),
@@ -66,17 +55,13 @@ export const requestFeedback: () => IRequestFeedback = () => ({
       email: "",
     },
   ],
-  updateFeedbackDetails(
-    i: number,
-    valToChange: "name" | "email",
-    value: string
-  ) {
-    this.externalFeedbackDetails![i][valToChange] = value;
+  updateFeedbackDetails(i, valToChange, value) {
+    this.externalFeedbackDetails[i][valToChange] = value;
   },
   addExternalFeedback() {
     this.externalFeedbackDetails?.push({ name: "", email: "" });
   },
-  removeExternalFeedback(i: number) {
+  removeExternalFeedback(i) {
     this.externalFeedbackDetails?.splice(i, 1);
   },
   feedbackRequestType: "quick-recognition",
