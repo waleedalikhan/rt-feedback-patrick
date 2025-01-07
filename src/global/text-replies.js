@@ -3,7 +3,17 @@ export const textReplies = (data) => ({
   isEditReply: false,
   isEditReplyLoading: false,
   isRemoveReplyLoading: false,
-
+  // Function for editing reply
+  editReply() {
+    this.isEditReplyLoading = true;
+    setTimeout(() => {
+      this.isEditReplyLoading = false;
+      this.isEditReply = false;
+      // Updated reply object
+      console.log(this.reply);
+      // Api call to edit reply here!
+    }, 2000);
+  },
   // Function to remove reply
   removeReply(index) {
     this.isRemoveReplyLoading = true;
@@ -13,11 +23,5 @@ export const textReplies = (data) => ({
         bubbles: true,
       })
     );
-  },
-
-  init() {
-    this.$el.addEventListener("reply-removed", () => {
-      this.isRemoveReplyLoading = false;
-    });
   },
 });

@@ -32,13 +32,10 @@ export const innerFeedback = (feedback) => ({
       const index = e.detail;
       const replies = this.data.textReplies;
       setTimeout(() => {
-        replies.splice(index, 1);
+        // Reply that needs to be removed stored in removedReply variable
+        const removedReply = replies.splice(index, 1);
+        // Do api call here to remove reply before the UI gets updated
         this.data.textReplies = replies;
-        this.$el.dispatchEvent(
-          new CustomEvent("reply-removed", {
-            detail: null,
-          })
-        );
       }, 2000);
     });
   },
