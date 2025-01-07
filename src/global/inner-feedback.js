@@ -38,6 +38,10 @@ export const innerFeedback = (feedback) => ({
         this.data.textReplies = replies;
       }, 2000);
     });
+    this.$el.addEventListener("edit-reply", (e) => {
+      const { index, reply } = e.detail;
+      this.data.textReplies[index] = reply;
+    });
   },
 
   // Toggle text clamp
