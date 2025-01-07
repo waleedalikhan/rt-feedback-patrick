@@ -500,8 +500,8 @@
                             type="text"
                             class="px-5 py-2 rounded-lg bg-white ring-0 ring-offset-0 focus:ring-0 focus:ring-offset-0 outline-none focus:outline-none w-full"
                             :value="reply.replyComment"
-                            x-model="reply.replyComment"
                             placeholder="Add comment"
+                            x-model="replyToEdit"
                           />
                           <div class="flex items-center gap-2">
                             <button
@@ -544,7 +544,7 @@
                             <button
                               type="button"
                               class="text-neutral-500 outline-none focus:outline-none text-sm"
-                              @click="isEditReply = false"
+                              @click="isEditReply = false;replyToEdit = reply.replyComment"
                             >
                               Cancel
                             </button>
